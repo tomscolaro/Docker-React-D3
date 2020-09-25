@@ -16,6 +16,7 @@ function App() {
       .attr("cy", value => value * 2)
       .attr("stroke", "red");
   }, [data]);
+
   return (
     <React.Fragment>
       <svg ref={svgRef}></svg>
@@ -26,7 +27,17 @@ function App() {
       <button onClick={() => setData(data.filter(value => value < 35))}>
         Filter data
       </button>
+      <form>
+
+    </form>
+
     </React.Fragment>
+    
+
+
+
+
+
   );
 }
 
