@@ -17,6 +17,16 @@ function App() {
       .attr("stroke", "red");
   }, [data]);
 
+
+
+// function GetData(){
+//   Promise data = [];
+
+// };
+
+
+
+
   return (
     <React.Fragment>
       <svg ref={svgRef}></svg>
