@@ -1,33 +1,50 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, Component } from "react";
 import "./App.css";
+
 //import { select } from "d3";
-var express = require('express'),
-  app = express(),
-  port = process.env.PORT || 3000;
-
-app.listen(port);
 
 
+const Planets = () => {
+  const [hasError, setErrors] = useState(false);
+  const [planets, setPlanets] = useState({});
 
+  async function fetchData() {
+    const res = await fetch("https://swapi.co/api/planets/4/");
+    res
+      .json()
+      .then(res => setPlanets(res))
+      .catch(err => setErrors(err));
+  }
 
-
-
-
-
-function App() {
-  const [data, setData] = useState([25, 30, 45, 60, 20]);
-  const svgRef = useRef();
   useEffect(() => {
-    const svg = select(svgRef.current);
-    svg
-      .selectAll("circle")
-      .data(data)
-      .join("circle")
-      .attr("r", value => value)
-      .attr("cx", value => value * 2)
-      .attr("cy", value => value * 2)
-      .attr("stroke", "red");
-  }, [data]);
+    fetchData();
+  });
+
+  return (
+    <div>
+      <span>{JSON.stringify(planets)}</span>
+      <hr />
+      <span>Has error: {JSON.stringify(hasError)}</span>
+    </div>
+  );
+};
+export default Planets;
+
+
+// function App() {
+//   const [data, setData] = useState([25, 30, 45, 60, 20]);
+//   const svgRef = useRef();
+//   useEffect(() => {
+//     const svg = select(svgRef.current);
+//     svg
+//       .selectAll("circle")
+//       .data(data)
+//       .join("circle")
+//       .attr("r", value => value)
+//       .attr("cx", value => value * 2)
+//       .attr("cy", value => value * 2)
+//       .attr("stroke", "red");
+//   }, [data]);
 
 // function GetData(){
 //   Promise data = [];
@@ -52,4 +69,4 @@ function App() {
   //);
 //}
 
-export default App;
+// export default App;

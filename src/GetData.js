@@ -27,23 +27,6 @@ http.createServer(function (req, res) {
     });
   }).listen(8080);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class GetData extends PureComponent {
     constructor(props) {
         super(props);

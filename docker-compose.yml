@@ -10,3 +10,10 @@ services:
     volumes:
       - "/app/node_modules"
       - "./:/app" 
+  api:
+    build:
+      context: ./api/
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+      
