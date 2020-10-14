@@ -1,22 +1,15 @@
-var http = require('http');
-var fs = require('fs');
+const express = require('express');
 
-var server = http.createServer(function (req, res) {
+// Constants
+const PORT = 8000;
+const HOST = '127.0.0.1';
 
-    if (req.method === "GET") {
-        res.writeHead(200, { "Content-Type": "text/html" });
-        fs.createReadStream("./public/form.html", "UTF-8").pipe(res);
-    } else if (req.method === "POST") {
-    
-        var body = "";
-        req.on("data", function (chunk) {
-            body += chunk;
-        });
+// App
+const app = express();
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
 
-        req.on("end", function(){
-            res.writeHead(200, { "Content-Type": "text/html" });
-            res.end(body);
-        });
-    }
-
-}).listen(3000);
+console.log('----------------------this is running-------------------')
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`); 
